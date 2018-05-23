@@ -8,6 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 public class FrequentationFilter implements Filter {
 	private FilterConfig config = null;
@@ -21,11 +22,16 @@ public class FrequentationFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 	throws IOException, ServletException {
-	long before = System.currentTimeMillis();
-	chain.doFilter(req, resp);
-	long after = System.currentTimeMillis();
-	String path = ((HttpServletRequest) req).getRequestURI();
-	config.getServletContext().log(path + " : " + (after - before));
+	
+		if(config == null){
+			return;
+		}
+		long before = System.currentTimeMillis();
+		chain.doFilter(req, resp);
+		long after = System.currentTimeMillis();
+		HttpServletRequest request = (HttpServletRequest) req;
+		String path = request.getRequestURI().substring(request.getContextPath().length());
+		config.getServletContext().log(path + " : " + (after - before));
 	}
 
 	@Override

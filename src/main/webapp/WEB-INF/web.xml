@@ -3,25 +3,43 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-<display-name>sgp</display-name>
-<servlet>
-<servlet-name>ListerCollaborateursController</servlet-name>
-<servlet-class>dev.sgp.web.ListerCollaborateursController</servlet-class>
-</servlet>
+	<display-name>sgp</display-name>
+	
+	<filter>
+		<filter-name>FreqFilter</filter-name>
+		<filter-class>filtre.FrequentationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FreqFilter</filter-name>
+		<url-pattern>/collaborateurs/*</url-pattern>
+	</filter-mapping>
+	
+	<listener>
+		<listener-class>listener.CompteurSessionListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>ListerCollaborateursController</servlet-name>
+		<servlet-class>dev.sgp.web.ListerCollaborateursController</servlet-class>
+	</servlet>
 
-<servlet>
-<servlet-name>EditerCollaborateursController</servlet-name>
-<servlet-class>dev.sgp.web.EditerCollaborateursController</servlet-class>
-</servlet>
+	<servlet>
+		<servlet-name>EditerCollaborateursController</servlet-name>
+		<servlet-class>dev.sgp.web.EditerCollaborateursController</servlet-class>
+	</servlet>
 
-<servlet-mapping>
-<servlet-name>EditerCollaborateursController</servlet-name>
-<url-pattern>/collaborateurs/editer</url-pattern>
-</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>EditerCollaborateursController</servlet-name>
+		<url-pattern>/collaborateurs/editer</url-pattern>
+	</servlet-mapping>
 
-<servlet-mapping>
-<servlet-name>ListerCollaborateursController</servlet-name>
-<url-pattern>/collaborateurs/lister</url-pattern>
-</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListerCollaborateursController</servlet-name>
+		<url-pattern>/collaborateurs/lister</url-pattern>
+	</servlet-mapping>
+	
 
+	
+	
+	
 </web-app>
