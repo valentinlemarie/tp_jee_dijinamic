@@ -5,7 +5,7 @@
 <head>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.css">
-<script type="text/javascript" src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.js">"></script>
+<script  src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.js"></script>
 
     <title>Collaboratueurs</title>
   </head>
@@ -18,7 +18,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item default ">
+      <li class="nav-item active ">
         <a class="nav-link" href="#">Collaboratueurs <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
@@ -33,25 +33,21 @@
 
 
 <div class="container">
-  <form class="needs-validation" novalidate>
+  <form class="needs-validation" method="post" >
 
 
     <div class="form-group row">
       <label for="validationTooltip01" class="col-sm-2 col-form-label">Nom</label>
       <div class="col-sm-4">
-      <input type="text" class="form-control" id="validationTooltip01"   required>
-        <div class="invalid-tooltip">
-          Le nom est obligatoire !
-        </div>
+      <input type="text" class="form-control" name="nom" id="validationTooltip01"   >
+        
       </div>
     </div>
     <div class="form-group row">
       <label for="validationTooltip02" class="col-sm-2 col-form-label">Prénom</label>
       <div class="col-sm-4">
-      <input type="text" class="form-control" id="validationTooltip02"  required>
-      <div class="invalid-tooltip">
-        Le prénom est obligatoire !
-      </div>
+      <input type="text" class="form-control" name="prenom" id="validationTooltip02"  >
+      
     </div>
     </div>
 
@@ -59,55 +55,30 @@
     <div class="form-group row">
       <label for="validationTooltip03" class="col-sm-2 col-form-label">Date de naissance</label>
       <div class="col-sm-4">
-      <input type="date" class="form-control" id="validationTooltip03"  required>
-      <div class="invalid-tooltip">
-        La date de naissance est obligatoire !
-      </div>
+      <input type="date" class="form-control" name="dateNaissance" id="validationTooltip03"  >
+      
     </div>
     </div>
     <div class="form-group row">
       <label for="validationTooltip04" class="col-sm-2 col-form-label">adresse</label>
       <div class="col-sm-4">
-      <textarea rows="4"  class="form-control" id="validationTooltip04" required> </textarea>
-      <div class="invalid-tooltip">
-        L'addresse est obligatoire !
-      </div>
+      <textarea rows="4"  class="form-control" name="adresse" id="validationTooltip04" > </textarea>
+      
     </div>
     </div>
     <div class="form-group row">
       <label for="validationTooltip05" class="col-sm-2 col-form-label">Numéro de Sécurité Sociale</label>
       <div class="col-sm-4">
-      <input type="text" class="form-control" id="validationTooltip05" maxlength="15" required>
-      <div class="invalid-tooltip">
-        le numero de securite sociale est obligatoire !
-      </div>
+      <input type="number" class="form-control" name="secureId" id="validationTooltip05" maxlength="15" >
+      
     </div>
     </div>
 
-  <button class="btn btn-primary" type="submit">Submit form</button>
+  <input class="btn btn-primary" value="Enregistrer "type="submit">
 </form>
 
 </div>
 
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
+
   </body>
 </html>

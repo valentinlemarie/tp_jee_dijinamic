@@ -1,11 +1,16 @@
+<%@page import="dev.sgp.util.Constantes"%>
 <%@page import="java.util.List"%>
+<%@page import="dev.sgp.entite.Collaborateur"%>
+
+
+
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.css">
-<script type="text/javascript" src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.js">"></script>
+<script  src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.js"></script>
 
 
     <title>Collaboratueurs</title>
@@ -13,7 +18,7 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <img class="mr-3" src="icon-developer-icon.png" >
+  <img class="mr-3" src="<%=request.getContextPath()%>/bootstrap/icon-developer-icon.png" >
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -34,7 +39,7 @@
 
   <div class="contener">
     <div class="text-right">
-      <a href="collaborateur.html" class=" btn btn-info">Ajouter un nouveau Collaboratueur</a>
+      <a href="editer" class=" btn btn-info">Ajouter un nouveau Collaboratueur</a>
     </div>
 
     <h1>Les Collaborateurs</h1>
@@ -65,87 +70,27 @@
     </form>
 
   <div class="row">
+  <%
+  
+  List<Collaborateur> listCollaborateurs =(List<Collaborateur>) request.getAttribute("listCol");
+  for( Collaborateur col :listCollaborateurs ){ %>
   <div class="col-sm-4">
     <div class="card text-center bg-light mb-3" style="max-width: 18rem;">
-      <div class="card-header">Nom Prenom</div>
+      <div class="card-header"><%col.getNom();%> <%col.getPrenom();%></div>
         <div class="card-body">
 
-          <img src="new_logo.png" class="rounded float-left  " alt="...">
+          <img src="<%=request.getContextPath()%><%col.getPhoto();%>" class="rounded float-left  " alt="...">
 
-          <p class="card-text">Fonction : blabla <br /> Département : blabla <br /> Email : blabla </p>
+          <p class="card-text">Né le : <%col.getDateDeNaissance();%> <br /> emailPro : <%col.getEmailPro();%></p>
           <div class="text-right">
             <bouton class="btn btn-primary ">Editer</bouton>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="card text-center bg-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">Nom Prenom</div>
-          <div class="card-body">
-
-            <img src="new_logo.png" class="rounded float-left  " alt="...">
-
-            <p class="card-text">Fonction : blabla <br /> Département : blabla <br /> Email : blabla </p>
-            <div class="text-right">
-              <bouton class="btn btn-primary ">Editer</bouton>
-            </div>
-          </div>
-        </div>
-      </div><div class="col-sm-4">
-        <div class="card text-center bg-light mb-3" style="max-width: 18rem;">
-          <div class="card-header">Nom Prenom</div>
-            <div class="card-body">
-
-              <img src="new_logo.png" class="rounded float-left  " alt="...">
-
-              <p class="card-text">Fonction : blabla <br /> Département : blabla <br /> Email : blabla </p>
-              <div class="text-right">
-                <bouton class="btn btn-primary ">Editer</bouton>
-              </div>
-            </div>
-          </div>
-        </div><div class="col-sm-4">
-          <div class="card text-center bg-light mb-3" style="max-width: 18rem;">
-            <div class="card-header">Nom Prenom</div>
-              <div class="card-body">
-
-                <img src="new_logo.png" class="rounded float-left  " alt="...">
-
-                <p class="card-text">Fonction : blabla <br /> Département : blabla <br /> Email : blabla </p>
-                <div class="text-right">
-                  <bouton class="btn btn-primary ">Editer</bouton>
-                </div>
-              </div>
-            </div>
-          </div><div class="col-sm-4">
-            <div class="card text-center bg-light mb-3" style="max-width: 18rem;">
-              <div class="card-header">Nom Prenom</div>
-                <div class="card-body">
-
-                  <img src="new_logo.png" class="rounded float-left  " alt="...">
-
-                  <p class="card-text">Fonction : blabla <br /> Département : blabla <br /> Email : blabla </p>
-                  <div class="text-right">
-                    <bouton class="btn btn-primary ">Editer</bouton>
-                  </div>
-                </div>
-              </div>
-            </div><div class="col-sm-4">
-              <div class="card text-center bg-light mb-3" style="max-width: 18rem;">
-                <div class="card-header">Nom Prenom</div>
-                  <div class="card-body">
-
-                    <img src="new_logo.png" class="rounded float-left  " alt="...">
-
-                    <p class="card-text">Fonction : blabla <br /> Département : blabla <br /> Email : blabla </p>
-                    <div class="text-right">
-                      <bouton class="btn btn-primary ">Editer</bouton>
-                    </div>
-                  </div>
-                </div>
-              </div>
   </div>
+  
+  <%	} %> 
 </div>
 
   </body>
