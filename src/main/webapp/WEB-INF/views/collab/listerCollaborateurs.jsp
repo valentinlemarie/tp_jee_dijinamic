@@ -1,16 +1,16 @@
 <%@page import="dev.sgp.util.Constantes"%>
 <%@page import="java.util.List"%>
 <%@page import="dev.sgp.entite.Collaborateur"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-
-<link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.css">
-<script  src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.js"></script>
+<c:set var="base" value="${request.contextPath}"/>
+<script src="bootstrap/js/bootstrap.js"></script>
+ <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
 
 
     <title>Collaboratueurs</title>
@@ -18,7 +18,7 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <img class="mr-3" src="<%=request.getContextPath()%>/bootstrap/icon-developer-icon.png" >
+  <img class="mr-3" src="bootstrap/icon-developer-icon.png" >
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -70,18 +70,18 @@
     </form>
 
   <div class="row">
-  <%
-  
-  List<Collaborateur> listCollaborateurs =(List<Collaborateur>) request.getAttribute("listCol");
-  for( Collaborateur col :listCollaborateurs ){ %>
+  <c:set var="listCollaborateurs" value="(List<Collaborateur>) request.getAttribute('listCol')" scope="page" ></c:set>
+  <c:forEach  items="${ listCollaborateurs }" var="col" varStatus="status">
+ 
+
   <div class="col-sm-4">
     <div class="card text-center bg-light mb-3" style="max-width: 18rem;">
-      <div class="card-header"><%col.getNom();%> <%col.getPrenom();%></div>
+      <div class="card-header"> <c:out value="${col.getNom()}"></c:out> <c:out value="${col.getPrenom()}"></c:out></div>
         <div class="card-body">
 
-          <img src="<%=request.getContextPath()%><%col.getPhoto();%>" class="rounded float-left  " alt="...">
+          <img src="<c:url value='${base}'></c:url> <c:out value='${col.getPhoto()}'></c:out>" class="rounded float-left  " alt="...">
 
-          <p class="card-text">Né le : <%col.getDateDeNaissance();%> <br /> emailPro : <%col.getEmailPro();%></p>
+          <p class="card-text">Né le : <c:out value="${col.getDateDeNaissance()}"></c:out> <br /> emailPro : <c:out value="${col.getEmailPro()}"></c:out></p>
           <div class="text-right">
             <bouton class="btn btn-primary ">Editer</bouton>
           </div>
@@ -90,7 +90,7 @@
     </div>
   </div>
   
-  <%	} %> 
+  </c:forEach>
 </div>
 
   </body>
