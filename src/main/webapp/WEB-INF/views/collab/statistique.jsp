@@ -50,7 +50,7 @@
     </tr>
   </thead>
   <tbody>
-  <c:forEach>
+  <c:forEach items="" varStatus="" var="">
     <tr>
       <td>1</th>
       <td>Mark</td>
